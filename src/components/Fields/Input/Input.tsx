@@ -42,7 +42,7 @@ export const Input: FC<InputProps & { children?: any }> = (props) => {
 
     return (
         <Form.Group className="mb-3">
-            <Form.Label>{label}</Form.Label>
+            {label && <Form.Label>{label}</Form.Label>}
             { renderChildren() }
         </Form.Group>
     )

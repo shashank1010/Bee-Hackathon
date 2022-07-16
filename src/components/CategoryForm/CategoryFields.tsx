@@ -49,6 +49,7 @@ export const CategoryFields: FC<Pick<Category, "categoryId">> = ({categoryId}) =
     const fields = useCategory<CategoryField[]>({ categoryId }, ({ fields}) => fields);
     return (
         <>
+        <hr />
         {fields.map((field) => <CategoryFieldComponent key={field.fieldId} { ...field } categoryId={categoryId} />)}
         </>
     );

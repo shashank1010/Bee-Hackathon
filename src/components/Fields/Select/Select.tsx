@@ -8,7 +8,7 @@ const Option: FC<OptionInterface> = ({ label, ...optionProps }) => {
 }
 
 export const Select: FC<SelectProps> = (props) => {
-    const { options, value, onChange } = props;
+    const { options, value, label, onChange } = props;
 
     const inputProps = {
         value,
@@ -19,7 +19,7 @@ export const Select: FC<SelectProps> = (props) => {
     
     return (
         <Form.Group className="mb-3">
-            <Form.Label></Form.Label>
+            {label && <Form.Label>{label}</Form.Label>}
             <Form.Select { ...inputProps }>
                 { inputProps.children }
             </Form.Select>
