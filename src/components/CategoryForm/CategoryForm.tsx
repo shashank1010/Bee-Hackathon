@@ -1,15 +1,13 @@
-import { ChangeEventHandler, FC, useCallback, useMemo } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { addField, deleteCategory, updateCategoryModelTitle, updateCategoryName } from "../../redux/actions";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { useAppDispatch } from "../../redux/store";
+import styled from "styled-components";
 
 import { Card } from "../Card";
 import { TrashFill } from 'react-bootstrap-icons';
-import styled from "styled-components";
-import {find, isEqual} from "lodash";
 import { CategoryFields } from "./CategoryFields";
 import { Category, CategoryField } from "../../redux/Category/types";
 import { Input, Select, Dropdown } from "../Fields";
-import { FieldTypes } from "../../utilities";
 import { useCategory } from "./useCategory";
 import { fieldTypesOptions } from "./fieldTypeOptions";
 
@@ -17,6 +15,10 @@ import { fieldTypesOptions } from "./fieldTypeOptions";
 interface CategoryFormProps {
     categoryId: string
 }
+
+const StyledCard = styled(Card)`
+    width: 100%;
+`
 
 const Header = styled(Card.Header)`
     display: flex;
@@ -62,7 +64,7 @@ export const CategoryForm: FC<CategoryFormProps> = ({ categoryId }) => {
     const handleUpdateModelTitle = useCallback((categoryModelTitleId: string) => dispatch(updateCategoryModelTitle({ categoryId, categoryModelTitleId })), [ categoryId ]);
 
     return (
-        <Card>
+        <StyledCard>
             <Header>
                 <Title>{ category.name }</Title>
                 <CloseIcon onClick={handleDeleteCategory} />
@@ -71,8 +73,10 @@ export const CategoryForm: FC<CategoryFormProps> = ({ categoryId }) => {
                 <Input type="text" label="Name" value={category.name} onChange={ handleUpdateTitle } />
                 <ModelTitle categoryId={categoryId} onChange={handleUpdateModelTitle} categoryModelTitleId={category.categoryModelTitleId} />
                 <CategoryFields categoryId={categoryId} />
-                <AddFieldDropdown categoryId={categoryId} />
             </Card.Body>
-        </Card>
+            <Card.Footer>
+                <AddFieldDropdown categoryId={categoryId} />
+            </Card.Footer>
+        </StyledCard>
     )
 }
