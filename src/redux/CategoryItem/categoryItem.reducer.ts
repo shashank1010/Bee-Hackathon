@@ -28,7 +28,7 @@ export const CategoryItemReducer = (state = categoryItemState, action: Action & 
             });
         case CategoryActions.DELETE_FIELD: {        
             return state.map((item) => {
-                if (item.itemId !== action.payload.itemId) {
+                if (item.categoryId !== action.payload.categoryId) {
                     return item;
                 }
 

@@ -35,7 +35,7 @@ export const InventoryForm: FC<{itemId: string, categoryId: string}> = ({ itemId
     const item = useCategoryItem({ categoryId, itemId }, (item) => ({ ...omit(item, "fields"), modelTitle: item.fields[category.categoryModelTitleId] }))
 
     const handleDeleteItem = useCallback(() => dispatch(deleteItem({ itemId })), [])
-    
+
 
     return (
         <Col>
