@@ -18,7 +18,7 @@ export const MenuBar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand href="#home">Inventorizilla</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Inventorizilla</Navbar.Brand>
                 <Navbar.Toggle aria-controls="inventory-zilla-nav" />
                 <Navbar.Collapse id="inventory-zilla-nav">
                     <Nav>
