@@ -15,8 +15,6 @@ const InventoryField: FC<CategoryField & { value: string } & Pick<CategoryItem, 
 
     const handleFieldUpdate = (value: string) => dispatch(updateCategoryItem({ categoryId, itemId, fields: { [field.fieldId]: value }}));
 
-    console.log({ field })
-
     return (
         <Row><VariadicField label={field.name } type={ field.type } value={field.value} onChange={handleFieldUpdate} /></Row>
     );

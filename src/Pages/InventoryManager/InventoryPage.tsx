@@ -21,7 +21,7 @@ export const InventoryPage:FC<{categoryId?: string}> = ({ categoryId }) => {
 
     return (
         <>
-            {categories.map(({ name, categoryId}) => <StyledRow ><InventoryManager key={categoryId} categoryName={name} categoryId={categoryId} /></StyledRow>)}
+            {categories.map(({ name, categoryId}) => <StyledRow key={categoryId} ><InventoryManager categoryName={name} categoryId={categoryId} /></StyledRow>)}
         </>
     )
 }

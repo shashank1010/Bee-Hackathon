@@ -4,7 +4,7 @@ import { useCategories } from "../components/CategoryForm/useCategory"
 import { Category } from "../redux/Category/types"
 
 const RouterLink: typeof Nav.Link = (props) => {
-    return <Nav.Link { ...props } as={Link} />
+    return <Nav.Link { ...props } eventKey={props.to} as={Link} />
 }
 
 type CategoryPart = Pick<Category, "categoryId" | "name"> 
@@ -18,7 +18,7 @@ export const MenuBar = () => {
     return (
         <Navbar bg="light" expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand as={Link} to="/">Inventorizilla</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">InventorZilla</Navbar.Brand>
                 <Navbar.Toggle aria-controls="inventory-zilla-nav" />
                 <Navbar.Collapse id="inventory-zilla-nav">
                     <Nav>
