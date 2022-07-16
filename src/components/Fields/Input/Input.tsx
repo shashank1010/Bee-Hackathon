@@ -11,7 +11,7 @@ export const Input: FC<InputProps & { children?: any }> = (props) => {
 
     const inputProps = {
         type, value,
-        onChange: useCallback((e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value), []) 
+        onChange: useCallback((e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value), [onChange]),
     };
 
     const renderChildren = () => {
