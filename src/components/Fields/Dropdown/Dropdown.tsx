@@ -12,12 +12,12 @@ const DropdownItem: FC<OptionInterface & Record<"onChange", Function>> = ({ valu
 }
 
 
-export const Dropdown: FC<DropdownProps> = ({ label, value, options, onChange }) => {
+export const Dropdown: FC<DropdownProps> = ({ label, value, options, onChange, ...props }) => {
     const title = useMemo(() => find(options, { value })?.label ?? label, [value, label, options]),
           dropdownOptions = useMemo(() => options.map((option) => <DropdownItem key={option.value} onChange={onChange} { ...option } />, ), [ options ]);
 
     return (
-        <DropdownButton title={ title }>
+        <DropdownButton title={ title } variant={props.variant}>
           {dropdownOptions}
         </DropdownButton>
       );

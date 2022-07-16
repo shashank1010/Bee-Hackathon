@@ -28,6 +28,7 @@ export interface NumberProps extends FieldProps {
 
 export interface DropdownProps extends FieldProps {
     value?: string;
+    variant?: string;
     options: OptionInterface[];
     onChange: (value: string) => any;
 }

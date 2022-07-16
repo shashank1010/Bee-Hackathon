@@ -13,7 +13,11 @@ const StyledRow = styled(Row)`
 `
 
 export const InventoryPage:FC<{categoryId?: string}> = ({ categoryId }) => {
-    const categories = useCategories<Pick<Category, "name" | "categoryId">[]>((categories) => categories.filter((category) => !categoryId || category.categoryId === categoryId ).map(({ categoryId, name }) => ({categoryId, name })));
+    const categories = useCategories<Pick<Category, "name" | "categoryId">[]>(
+        (categories) => categories
+            .filter((category) => !categoryId || category.categoryId === categoryId )
+            .map(({ categoryId, name }) => ({categoryId, name }))
+    );
 
     return (
         <>

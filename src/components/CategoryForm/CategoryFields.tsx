@@ -37,7 +37,7 @@ const CategoryFieldComponent: FC<CategoryField & Record<"categoryId", string>> =
             {
                 // @ts-ignore
                 <Input type="text" value={ name } onChange={handleUpdateLabel}>
-                    <Dropdown label="" value={ type } onChange={handleUpdateType} options={options} />
+                    <Dropdown variant="secondary" label="" value={ type } onChange={handleUpdateType} options={options} />
                 </Input>
             }
         </Row>

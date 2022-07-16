@@ -14,9 +14,20 @@ const StyledRow = styled(Row)`
 `
 
 const StyledCol = styled(Col)`
-    max-width: 25%;
+    max-width: var(--column-width);
     display: flex;
-    flex: 1 0 25%;
+    flex: 1 0 var(--column-width);
+
+    --column-width: 100%;
+    @media (min-width: 600px) {
+        --column-width: 50%;
+    }
+    @media (min-width: 992px) {
+        --column-width: 33%;
+    }
+    @media (min-width: 1024px) {
+        --column-width: 25%;
+    }
 `
 
 const ButtonCol = styled(StyledCol)`
