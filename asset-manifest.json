@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Bee-Hackathon/static/css/main.ff79ec8e.css",
-    "main.js": "/Bee-Hackathon/static/js/main.8da60ab6.js",
+    "main.js": "/Bee-Hackathon/static/js/main.9822517c.js",
     "static/js/787.1d565cc6.chunk.js": "/Bee-Hackathon/static/js/787.1d565cc6.chunk.js",
     "index.html": "/Bee-Hackathon/index.html",
     "main.ff79ec8e.css.map": "/Bee-Hackathon/static/css/main.ff79ec8e.css.map",
-    "main.8da60ab6.js.map": "/Bee-Hackathon/static/js/main.8da60ab6.js.map",
+    "main.9822517c.js.map": "/Bee-Hackathon/static/js/main.9822517c.js.map",
     "787.1d565cc6.chunk.js.map": "/Bee-Hackathon/static/js/787.1d565cc6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff79ec8e.css",
-    "static/js/main.8da60ab6.js"
+    "static/js/main.9822517c.js"
   ]
 }
