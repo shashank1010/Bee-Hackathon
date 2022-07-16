@@ -7,7 +7,7 @@ import { DropdownProps, OptionInterface } from '../types';
 import { find } from 'lodash';
 
 const DropdownItem: FC<OptionInterface & Record<"onChange", Function>> = ({ value, label, disabled, onChange }) => {
-  const onClick = useCallback(() => onChange(value), [value]);
+  const onClick = () => onChange(value);
   return <DropdownComponent.Item onClick={onClick} disabled={disabled}>{label}</DropdownComponent.Item>
 }
 
