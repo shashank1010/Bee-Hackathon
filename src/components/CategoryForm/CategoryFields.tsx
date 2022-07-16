@@ -7,6 +7,7 @@ import { removeField, updateField } from "../../redux/actions";
 import { Dropdown, Input } from "../Fields";
 import { useCategory } from "./useCategory";
 import { fieldTypesOptions } from "./fieldTypeOptions";
+import { FieldTypes } from "../../utilities";
 
 
 
@@ -25,7 +26,7 @@ const CategoryFieldComponent: FC<CategoryField & Record<"categoryId", string>> =
     const handleUpdateType = (type: string) => {
         switch (type) {
             case"remove": return onRemoveField();
-            default: return onChange({ fieldId, name, type })
+            default: return onChange({ fieldId, name, type: type as FieldTypes })
         }
     }
 

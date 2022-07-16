@@ -6,7 +6,7 @@ interface FieldProps extends Partial<HTMLElement> {
 
 export interface InputProps extends FieldProps {
     value: string;
-    type: "text" | "email";
+    type: "text" | "email" | "number" | "date";
     onChange: (value: string) => any;
 }
 

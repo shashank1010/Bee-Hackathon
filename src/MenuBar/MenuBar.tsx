@@ -12,11 +12,11 @@ type CategoryPart = Pick<Category, "categoryId" | "name">
 export const MenuBar = () => {
     const categories = useCategories<CategoryPart[]>((categories) => categories.map(({ categoryId, name }) => ({categoryId, name}) as CategoryPart))
     const categoryLinks = categories.map((category) => (
-        <RouterLink as={Link} to={`type/${category.categoryId}`}>{category.name}</RouterLink>
+        <RouterLink key={category.categoryId} as={Link} to={`type/${category.categoryId}`}>{category.name}</RouterLink>
     ))
 
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" fixed="top">
             <Container>
                 <Navbar.Brand href="#home">Inventorizilla</Navbar.Brand>
                 <Navbar.Toggle aria-controls="inventory-zilla-nav" />

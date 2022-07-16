@@ -21,7 +21,6 @@ export const Select: FC<SelectProps> = (props) => {
         <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Select { ...inputProps }>
-                <option>Select a value</option>
                 { inputProps.children }
             </Form.Select>
         </Form.Group>

@@ -1,1 +1,1 @@
-export * from "./InventoryManager"
+export * from "./InventoryPage"

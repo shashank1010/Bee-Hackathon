@@ -32,7 +32,7 @@ export const CategoryManager = (props: any) => {
     
     return (
         <StyledRow>
-            {categories.map((categoryId) => <StyledCol key={categoryId} ><CategoryForm categoryId={categoryId} /></StyledCol>)}
+            {categories.map((categoryId) => <StyledCol key={categoryId}><CategoryForm categoryId={categoryId} /></StyledCol>)}
             <ButtonCol>
                 <Button onClick={handleAddCategory}>Add Category</Button>
             </ButtonCol>
