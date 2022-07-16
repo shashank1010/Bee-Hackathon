@@ -5,11 +5,13 @@ import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Card } from "../Card";
 import { TrashFill } from 'react-bootstrap-icons';
 import styled from "styled-components";
-import {find} from "lodash";
+import {find, isEqual} from "lodash";
 import { CategoryFields } from "./CategoryFields";
-import { Category } from "../../redux/Category/types";
+import { Category, CategoryField } from "../../redux/Category/types";
 import { Input, Select, Dropdown } from "../Fields";
 import { FieldTypes } from "../../utilities";
+import { useCategory } from "./useCategory";
+import { fieldTypesOptions } from "./fieldTypeOptions";
 
 
 interface CategoryFormProps {
@@ -31,34 +33,29 @@ const CloseIcon = styled(TrashFill)`
     cursor: pointer;
 `
 
-const ModelTitle: FC<Pick<Category, "categoryModelTitleId" | "fields"> & Record<"onChange", (x: string) => void>> = ({ fields, categoryModelTitleId, onChange }) => {
+const ModelTitle: FC<Pick<Category, "categoryModelTitleId" | "categoryId"> & Record<"onChange", (x: string) => void>> = ({ categoryId, categoryModelTitleId, onChange }) => {
+    const fields = useCategory<CategoryField[]>({ categoryId }, ({ fields }) => fields)
     const options = useMemo(() => fields.map(({ fieldId: value, name: label }) => ({ value, label })), [fields])
 
-    if (fields.length){
+    if (!fields.length){
          return null;
     }
 
     return <Select label="Title Field" value={categoryModelTitleId} options={options} onChange={onChange} />
 }
 
-const fieldTypes = [
-    { value: FieldTypes.TEXT, label: "Text"},
-    { value: FieldTypes.NUMBER, label: "Number"},
-    { value: FieldTypes.DATE, label: "Date"},
-    { value: FieldTypes.SELECT, label: "Select"},
-];
 
 
 const AddFieldDropdown: FC<Pick<Category, "categoryId">> = ({ categoryId }) => {
     const dispatch = useAppDispatch();
     const handleAddField = useCallback((fieldType: string) => dispatch(addField({ categoryId, fieldType })), [ categoryId ]);
 
-    return <Dropdown label="Add Field" options={fieldTypes} onChange={ handleAddField } />
+    return <Dropdown label="Add Field" options={fieldTypesOptions} onChange={ handleAddField } />
 }
 
 export const CategoryForm: FC<CategoryFormProps> = ({ categoryId }) => {
     const dispatch = useAppDispatch();
-    const category = useAppSelector((state) => find(state.categories, {categoryId}) as Category)
+    const category = useCategory<Omit<Category, "fields">>({ categoryId }, ({ fields, ...category }: Category) => category)
 
     const handleDeleteCategory = useCallback(() => dispatch(deleteCategory({ categoryId })), [ categoryId ]);
     const handleUpdateTitle = useCallback((name: string) => dispatch(updateCategoryName({ categoryId, name })), [ categoryId ]);
@@ -72,8 +69,8 @@ export const CategoryForm: FC<CategoryFormProps> = ({ categoryId }) => {
             </Header>
             <Card.Body>
                 <Input type="text" label="Name" value={category.name} onChange={ handleUpdateTitle } />
-                <ModelTitle fields={category.fields} onChange={handleUpdateModelTitle} categoryModelTitleId={category.categoryModelTitleId} />
-                <CategoryFields fields={category.fields} categoryId={categoryId} />
+                <ModelTitle categoryId={categoryId} onChange={handleUpdateModelTitle} categoryModelTitleId={category.categoryModelTitleId} />
+                <CategoryFields categoryId={categoryId} />
                 <AddFieldDropdown categoryId={categoryId} />
             </Card.Body>
         </Card>

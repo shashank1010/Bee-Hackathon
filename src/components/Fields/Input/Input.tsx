@@ -1,10 +1,11 @@
 import { ChangeEvent, FC, useCallback } from 'react';
+import { InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { InputProps } from '../types';
 
-export const Input: FC<InputProps> = (props) => {
+export const Input: FC<InputProps & { children?: any }> = (props) => {
     const { label, } = props;
-    const { type, value, onChange, } = props;
+    const { type, value, onChange, children } = props;
 
 
 
@@ -13,12 +14,36 @@ export const Input: FC<InputProps> = (props) => {
         onChange: useCallback((e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value), []) 
     };
 
+    const renderChildren = () => {
+        const field = <Form.Control {...inputProps} />;
+
+        if (!children) return field;
+
+        if (typeof children === "string") {
+            return (
+                <InputGroup>
+                    {field}
+                    <InputGroup.Text>{children}</InputGroup.Text>
+                </InputGroup>
+            )
+        }
+
+
+        
+        return (
+            <InputGroup>
+                {field}
+                {children as any}
+            </InputGroup>
+        )
+        
+    }
     
 
     return (
         <Form.Group className="mb-3">
             <Form.Label>{label}</Form.Label>
-            <Form.Control {...inputProps} />
+            { renderChildren() }
         </Form.Group>
     )
 }

@@ -1,21 +1,24 @@
 import { FC, useCallback, useMemo } from 'react';
-import { default as DropdownCompoent } from 'react-bootstrap/Dropdown';
+
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownComponent from 'react-bootstrap/Dropdown';
+
 import { DropdownProps, OptionInterface } from '../types';
+import { find } from 'lodash';
 
 const DropdownItem: FC<OptionInterface & Record<"onChange", Function>> = ({ value, label, disabled, onChange }) => {
   const onClick = useCallback(() => onChange(value), [value]);
-  return <DropdownCompoent.Item onClick={onClick} disabled={disabled}>{label}</DropdownCompoent.Item>
+  return <DropdownComponent.Item onClick={onClick} disabled={disabled}>{label}</DropdownComponent.Item>
 }
 
-export const Dropdown: FC<DropdownProps> = ({ label, options, onChange }) => {
-    const dropdownOptions = useMemo(() => options.map((option) => <DropdownItem key={option.value} onChange={onChange} { ...option } />, ), [ options ]);
-  
+
+export const Dropdown: FC<DropdownProps> = ({ label, value, options, onChange }) => {
+    const title = useMemo(() => find(options, { value })?.label ?? label, [value, label, options]),
+          dropdownOptions = useMemo(() => options.map((option) => <DropdownItem key={option.value} onChange={onChange} { ...option } />, ), [ options ]);
+
     return (
-        <DropdownCompoent>
-          <DropdownCompoent.Toggle>{ label }</DropdownCompoent.Toggle>
-          <DropdownCompoent.Menu>
-            {dropdownOptions}
-          </DropdownCompoent.Menu>
-        </DropdownCompoent>
+        <DropdownButton title={ title }>
+          {dropdownOptions}
+        </DropdownButton>
       );
 }
